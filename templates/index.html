@@ -11,9 +11,7 @@
 <body>
     <div class="container_body">
         <div class="left-panel">
-            <div class="logo-circle">
-                <img src="{{ url_for('static', filename='imagen/logo.png') }}" alt="Logo" class="logo-img">
-            </div>
+            <div class="logo-circle"></div>
             <h2 class="bienvenido">Bienvenid@ a Subastas</h2>
             <p class="opcion">PRESTIGIO<br>MÉXICANO</p>
             <div class="divider"></div>
@@ -23,15 +21,15 @@
                 {% if nombre %}
                 <a class="menu-btn disabled">REGISTRO DE USUARIO</a>
                 {% else %}
-                <a href="{{ url_for('index') }}" class="menu-btn">NUEVO USUARIO</a>
+                <a href="{{ url_for('reg') }}" class="menu-btn">NUEVO USUARIO</a>
                 {% endif %}
                 {% if nombre %}
                 <a href="{{ url_for('logout') }}" class="menu-btn">CERRAR SESIÓN</a>
                 {% else %}
                 <a href="{{ url_for('login') }}" class="menu-btn">INICIAR SESIÓN</a>
                 {% endif %}
-                <a href="{{ url_for('index') }}" class="menu-btn">NUEVO OBJETO</a>
-                <a href="{{ url_for('index') }}" class="menu-btn">BÚSQUEDA</a>
+                <a href="{{ url_for('regobj') }}" class="menu-btn">NUEVO OBJETO</a>
+                <a href="{{ url_for('search') }}" class="menu-btn">BÚSQUEDA</a>
             </div>
         </div>
     </div>

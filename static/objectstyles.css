@@ -1,0 +1,81 @@
+body {
+    background-image: url('img/bodyimg.jpeg');
+    background-size: cover;
+    font-family: 'Roca One', serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    background-color: #996c59;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    height: auto;
+}
+
+.container_a {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: auto;
+    margin: 10px auto;
+}
+
+.icon-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon {
+    width: 80px;
+    height: 80px;
+    background-image: url('img/logo_PM.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 40%;
+}
+
+.position {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: calc(100vh - 100px);
+}
+
+.marco {
+    width: 749px;
+    height: 496px;
+    background-image: url('img/marco.png');
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.btn {
+    width: 160px;
+    height: 50px;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 2;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background-color: #b98c6a;
+}

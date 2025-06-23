@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='loginstyles.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="icon-title">
+            <h1>PRESTIGIO MÉXICANO</h1>
+            <div class="icon"></div>
+        </div>
+        <a href="{{ url_for('index') }}" class="btn">Volver</a>
+    </div>
+    <div class="position">
+        <div class="marco">
+            <form action="{{ url_for('index') }}" method="POST">
+                <div class="title">
+                    <h2>Iniciar Sesión</h2>
+                </div>
+                <div class="form-group">
+                    <label for="usuario">Correo</label>
+                    <input type="text" id="correo" name="correo" placeholder="Ingresa tu correo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña"
+                        required>
+                </div>
+                <button class="btn" type="submit">Acceder</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

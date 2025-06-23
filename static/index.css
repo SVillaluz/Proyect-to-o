@@ -1,53 +1,9 @@
 body {
     background-image: url('img/index.png');
     background-size: cover;
-    font-family: 'Times New Roman', serif;
+    font-family: 'Roca One', serif;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    display: flex;
-    background-color: #996c59;
-    align-items: center;
-    justify-content: space-between;
-    width: auto;
-    height: auto;
-}
-
-
-
-/* Contenedor para otro grupo de elementos usando flexbox */
-.container_a {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: auto;
-    margin: 10px auto;
-}
-
-/* Contenedor para el título e icono */
-.icon-title {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-/* Estilo para cada icono */
-.icon {
-    width: 90px;
-    height: 90px;
-    background-image: url('imagen/logo.png');
-    border-radius: 40%;
-}
-
-/* Estilo para el primer contenedor */
-.container1 {
-    display: flex;
-    align-items: center;
-    background-color: #996c59;
-    justify-content: space-between;
-    width: auto;
 }
 
 .container_body {
@@ -93,7 +49,7 @@ body {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: #fff;
+    background-image: url('img/logo_PM.png');
     display: flex;
     align-items: center;
     justify-content: center;

@@ -115,6 +115,21 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+@app.route('/reg', methods=['GET', 'POST'])
+def reg():
+    return render_template('newu.html')
+
+@app.route('/regobj', methods=['GET', 'POST'])
+def regobj():
+    return render_template('newob.html')
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    return render_template('search.html')
+
+@app.route('/pay', methods=['GET', 'POST'])
+def pay():
+    return render_template('pay.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -181,13 +181,17 @@ def regobj():
             return render_template('newob.html', error="No se pudo conectar a la base de datos.")
         try:
             cursor = conn.cursor()
+            # Ejecutar el stored procedure
             cursor.callproc('sp_insertar_inventario', [
                 tipo_articulo, descripcion, precio_val, estado
             ])
             conn.commit()
+            # Recuperar el último id insertado
+            cursor.execute('SELECT LAST_INSERT_ID();')
+            id_articulo = cursor.fetchone()[0]
             cursor.close()
             conn.close()
-            return render_template('newob.html', success="Artículo registrado exitosamente.")
+            return render_template('newob.html', success=f"Artículo registrado exitosamente. El Folio del artículo es: {id_articulo}")
         except Exception as e:
             if conn:
                 conn.rollback()
@@ -198,7 +202,29 @@ def regobj():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    return render_template('search.html')
+    info = None
+    error = None
+    if request.method == 'POST':
+        id_articulo = request.form.get('idusuario', '').strip()
+        if not id_articulo:
+            error = "Por favor, ingresa el folio del artículo."
+        else:
+            conn = conectar_db()
+            if not conn:
+                error = "No se pudo conectar a la base de datos."
+            else:
+                try:
+                    cursor = conn.cursor()
+                    cursor.callproc('sp_buscar_articulo', [id_articulo])
+                    for result in cursor.stored_results():
+                        info = result.fetchone()
+                    cursor.close()
+                    conn.close()
+                    if not info:
+                        error = "No se encontró ningún artículo con ese folio."
+                except Exception as e:
+                    error = f"Error al buscar el artículo: {str(e)}"
+    return render_template('search.html', info=info, error=error)
 
 @app.route('/pay', methods=['GET', 'POST'])
 def pay():

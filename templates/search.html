@@ -21,17 +21,17 @@
     <div class="info">
         <div class="Left">
             <div class="formulario">
-                <div class="campos-dobles">
-                    <div class="campo">
-                        <label for="idusuario" class="campo-label">Folio de Articulo:</label>
+                <form method="POST" action="{{ url_for('search') }}">
+                    <div class="campos-dobles">
+                        <div class="campo">
+                            <label for="idusuario" class="campo-label">Folio de Articulo:</label>
+                        </div>
+                        <div class="campo">
+                            <input type="text" id="idusuario" name="idusuario" placeholder="Ingresa el ID del artículo" />
+                        </div>
                     </div>
-                    <div class="campo">
-                        <input type="text" id="idusuario" placeholder="Ingresa el ID del usuario" />
-                    </div>
-                </div>
-                <a href="#" style="text-decoration: none;" onclick="buscarUsuario()">
-                    <div class="btn">Consultar</div>
-                </a>
+                    <button class="btn" type="submit">Consultar</button>
+                </form>
             </div>
         </div>
         <div class="Right">
@@ -40,7 +40,19 @@
                     Pagar
                 </button>
             </form>
-            <div id="resultado" class="resultado"></div>
+            <div id="resultado" class="resultado">
+                {% if error %}
+                <div style="color:red;">{{ error }}</div>
+                {% elif info %}
+                <div>
+                    <strong>Folio:</strong> {{ info[0] }}<br>
+                    <strong>Tipo:</strong> {{ info[1] }}<br>
+                    <strong>Descripción:</strong> {{ info[2] }}<br>
+                    <strong>Estado:</strong> {{ info[3] }}<br>
+                    <strong>Fecha de registro:</strong> {{ info[4] }}
+                </div>
+                {% endif %}
+            </div>
         </div>
 
         <div id="resultado" class="resultado"></div>

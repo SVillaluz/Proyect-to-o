@@ -100,7 +100,8 @@ CREATE PROCEDURE sp_insertar_inventario(
     IN p_tipo_articulo ENUM('Joyería', 'Automóvil', 'Muebles', 'Pinturas', 'Casas'),
     IN p_descripcion TEXT,
     IN p_valor_estimado DECIMAL(12,2),
-    IN p_estado ENUM('Disponible', 'En Subasta', 'Subastado', 'Vendido', 'Retirado')
+    IN p_estado ENUM('Disponible', 'En Subasta', 'Subastado', 'Vendido', 'Retirado'),
+    OUT p_id_articulo INT
 )
 BEGIN
     INSERT INTO inventario (
@@ -108,6 +109,7 @@ BEGIN
     ) VALUES (
         p_tipo_articulo, p_descripcion, AES_ENCRYPT(p_valor_estimado, 'llave_secreta'), p_estado, CURDATE()
     );
+    SET p_id_articulo = LAST_INSERT_ID();
 END $$
 
 DELIMITER ;

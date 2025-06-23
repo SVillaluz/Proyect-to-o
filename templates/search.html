@@ -1,18 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='searchstyles.css') }}">
     <title>Document</title>
 </head>
+
 <body>
     <div class="container">
         <div class="icon-title">
             <h1>PRESTIGIO MÉXICANO</h1>
             <div class="icon"></div>
         </div>
+        <h1>Búsqueda</h1>
         <a href="{{ url_for('index') }}" class="btn">Volver</a>
     </div>
+
+    <div class="info">
+        <div class="Left">
+            <div class="formulario">
+                <div class="campos-dobles">
+                    <div class="campo">
+                        <label for="idusuario" class="campo-label">Folio de Articulo:</label>
+                    </div>
+                    <div class="campo">
+                        <input type="text" id="idusuario" placeholder="Ingresa el ID del usuario" />
+                    </div>
+                </div>
+                <a href="#" style="text-decoration: none;" onclick="buscarUsuario()">
+                    <div class="btn">Consultar</div>
+                </a>
+            </div>
+        </div>
+        <div class="Right">
+            <form id="formpago" action="{{ url_for('pay') }}" method="GET">
+                <button class="btn" type="submit">
+                    Pagar
+                </button>
+            </form>
+            <div id="resultado" class="resultado"></div>
+        </div>
+
+        <div id="resultado" class="resultado"></div>
+    </div>
 </body>
+
 </html>

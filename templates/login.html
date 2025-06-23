@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='loginstyles.css') }}">
-    <title>Document</title>
+    <title>Inicio de sesión</title>
 </head>
 
 <body>
@@ -18,12 +18,15 @@
     </div>
     <div class="position">
         <div class="marco">
-            <form action="{{ url_for('index') }}" method="POST">
+            <form action="{{ url_for('login') }}" method="POST">
                 <div class="title">
                     <h2>Iniciar Sesión</h2>
                 </div>
+                {% if error %}
+                    <div class="error-message" style="color:red; text-align:center;">{{ error }}</div>
+                {% endif %}
                 <div class="form-group">
-                    <label for="usuario">Correo</label>
+                    <label for="correo">Correo</label>
                     <input type="text" id="correo" name="correo" placeholder="Ingresa tu correo" required>
                 </div>
 

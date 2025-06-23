@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='userstyles.css') }}">
-    <title>Document</title>
+    <title>Nuevo Usuario</title>
 </head>
 
 <body>
@@ -18,34 +18,46 @@
     </div>
     <div class="position">
         <div class="marco">
-            <h2>Nuevo Usuario</h2>
-            <form action="{{ url_for('index') }}" method="POST">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" required>
+            <form action="{{ url_for('reg') }}" method="POST">
+                <div class="title">
+                    <h2>Nuevo Usuario</h2>
+                </div>
+                <div class="position2">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre:</label>
+                            <input type="text" id="name" name="name" required>
 
-                <label for="apellido1">Apellido Paterno:</label>
-                <input type="text" id="apellido1" name="apellido1" required>
+                            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
 
-                <label for="apellido2">Apellido Materno:</label>
-                <input type="text" id="apellido2" name="apellido2" required>
+                            <label for="telefono">Telefono:</label>
+                            <input type="text" id="telefono" name="telefono" required>
+                        </div>
 
-                <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                        <div class="form-group">
+                            <label for="apellido1">Apellido Paterno:</label>
+                            <input type="text" id="apellido1" name="apellido1" required>
 
-                <label for="rfc">RFC:</label>
-                <input type="text" id="rfc" name="rfc" required>
+                            <label for="rfc">RFC:</label>
+                            <input type="text" id="rfc" name="rfc" required>
 
-                <label for="domicilio">Domicilio:</label>
-                <input type="text" id="domicilio" name="domicilio" required>
+                            <label for="email">Correo Electrónico:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
 
-                <label for="telefono">Telefono:</label>
-                <input type="text" id="telefono" name="telefono" required>
+                        <div class="form-group">
+                            <label for="apellido2">Apellido Materno:</label>
+                            <input type="text" id="apellido2" name="apellido2" required>
 
-                <label for="email">Correo Electrónico:</label>
-                <input type="email" id="email" name="email" required>
+                            <label for="domicilio">Domicilio:</label>
+                            <input type="text" id="domicilio" name="domicilio" required>
 
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
+                            <label for="password">Contraseña:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                    </div>
+                </div>
 
                 <button class="btn" type="submit">Registrar</button>
             </form>

@@ -75,3 +75,39 @@ CREATE TABLE entregas (
     FOREIGN KEY (id_cliente) REFERENCES datos_personales(id_cliente)
 );
 
+DELIMITER $$
+
+CREATE PROCEDURE sp_insertar_usuario(
+    IN p_nombre VARCHAR(100),
+    IN p_apellido_paterno VARCHAR(100),
+    IN p_apellido_materno VARCHAR(100),
+    IN p_fecha_nacimiento DATE,
+    IN p_domicilio TEXT,
+    IN p_telefono VARCHAR(20),
+    IN p_correo_electronico VARCHAR(100),
+    IN p_RFC VARCHAR(20),
+    IN p_contrasena VARBINARY(256)
+)
+BEGIN
+    INSERT INTO datos_personales (
+        nombre, apellido_paterno, apellido_materno, fecha_nacimiento, domicilio, telefono, correo_electronico, RFC, contraseña
+    ) VALUES (
+        p_nombre, p_apellido_paterno, p_apellido_materno, p_fecha_nacimiento, p_domicilio, p_telefono, p_correo_electronico, p_RFC, p_contrasena
+    );
+END $$
+
+CREATE PROCEDURE sp_insertar_inventario(
+    IN p_tipo_articulo ENUM('Joyería', 'Automóvil', 'Muebles', 'Pinturas', 'Casas'),
+    IN p_descripcion TEXT,
+    IN p_valor_estimado DECIMAL(12,2),
+    IN p_estado ENUM('Disponible', 'En Subasta', 'Subastado', 'Vendido', 'Retirado')
+)
+BEGIN
+    INSERT INTO inventario (
+        tipo_articulo, descripcion, valor_estimado_encriptado, estado, fecha_registro
+    ) VALUES (
+        p_tipo_articulo, p_descripcion, AES_ENCRYPT(p_valor_estimado, 'llave_secreta'), p_estado, CURDATE()
+    );
+END $$
+
+DELIMITER ;

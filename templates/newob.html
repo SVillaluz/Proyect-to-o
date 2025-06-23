@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='objectstyles.css') }}">
-    <title>Document</title>
+    <title>Registro de objetos</title>
 </head>
 
 <body>
@@ -18,8 +18,36 @@
     </div>
     <div class="position">
         <div class="marco">
-            <h2>Nuevo Usuario</h2>
-            <form action="{{ url_for('index') }}" method="POST">
+            <form action="{{ url_for('regobj') }}" method="POST">
+                <div class="title">
+                    <h2>Nuevo Objeto</h2>
+                </div>
+                <div class="position2">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="articulo">Tipo de articulo:</label>
+                            <input type="text" id="articulo" name="articulo" required>
+
+                            <label for="precio">Precio estimado:</label>
+                            <input type="number" id="precio" name="precio" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <select id="estado" name="estado" required>
+                                <option value="" disabled selected hidden>Selecciona una opción</option>
+                                <option value="Disponible">Disponible</option>
+                                <option value="En Subasta">En Subasta</option>
+                                <option value="Subastado">Subastado</option>
+                                <option value="Vendido">Vendido</option>
+                                <option value="Retirado">Retirado</option>
+                            </select>
+
+                            <label for="descripcion">Descripción:</label>
+                            <input type="text" id="descripcion" name="descripcion" required>
+                        </div>
+                    </div>
+                </div>
 
                 <button class="btn" type="submit">Registrar</button>
             </form>

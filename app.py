@@ -117,10 +117,83 @@ def logout():
 
 @app.route('/reg', methods=['GET', 'POST'])
 def reg():
+    if request.method == 'POST':
+        nombre = request.form.get('name', '').strip()
+        apellido1 = request.form.get('apellido1', '').strip()
+        apellido2 = request.form.get('apellido2', '').strip()
+        fecha_nacimiento = request.form.get('fecha_nacimiento', '').strip()
+        domicilio = request.form.get('domicilio', '').strip()
+        telefono = request.form.get('telefono', '').strip()
+        email = request.form.get('email', '').strip()
+        rfc = request.form.get('rfc', '').strip()
+        password = request.form.get('password', '').strip()
+
+        # Validación básica
+        if not all([nombre, apellido1, apellido2, fecha_nacimiento, domicilio, telefono, email, rfc, password]):
+            return render_template('newu.html', error="Por favor, completa todos los campos.")
+
+        # Validar contraseña
+        if not validador_contrasena.validate(password):
+            return render_template('newu.html', error="La contraseña no cumple con los requisitos de seguridad.")
+
+        # Hash de la contraseña
+        password_hash = hashlib.sha256(password.encode()).digest()
+
+        conn = conectar_db()
+        if not conn:
+            return render_template('newu.html', error="No se pudo conectar a la base de datos.")
+        try:
+            cursor = conn.cursor()
+            cursor.callproc('sp_insertar_usuario', [
+                nombre, apellido1, apellido2, fecha_nacimiento, domicilio, telefono, email, rfc, password_hash
+            ])
+            conn.commit()
+            cursor.close()
+            conn.close()
+            return render_template('newu.html', success="Usuario registrado exitosamente.")
+        except Exception as e:
+            if conn:
+                conn.rollback()
+                conn.close()
+            return render_template('newu.html', error=f"Error al registrar usuario: {str(e)}")
+    # Si es GET
     return render_template('newu.html')
 
 @app.route('/regobj', methods=['GET', 'POST'])
 def regobj():
+    if request.method == 'POST':
+        tipo_articulo = request.form.get('articulo', '').strip()
+        descripcion = request.form.get('descripcion', '').strip()
+        precio = request.form.get('precio', '').strip()
+        estado = request.form.get('estado', '').strip()
+
+        # Validación básica
+        if not all([tipo_articulo, descripcion, precio, estado]):
+            return render_template('newob.html', error="Por favor, completa todos los campos.")
+
+        try:
+            precio_val = float(precio)
+        except ValueError:
+            return render_template('newob.html', error="El precio debe ser un número válido.")
+
+        conn = conectar_db()
+        if not conn:
+            return render_template('newob.html', error="No se pudo conectar a la base de datos.")
+        try:
+            cursor = conn.cursor()
+            cursor.callproc('sp_insertar_inventario', [
+                tipo_articulo, descripcion, precio_val, estado
+            ])
+            conn.commit()
+            cursor.close()
+            conn.close()
+            return render_template('newob.html', success="Artículo registrado exitosamente.")
+        except Exception as e:
+            if conn:
+                conn.rollback()
+                conn.close()
+            return render_template('newob.html', error=f"Error al registrar artículo: {str(e)}")
+    # Si es GET
     return render_template('newob.html')
 
 @app.route('/search', methods=['GET', 'POST'])
